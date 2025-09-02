@@ -77,7 +77,7 @@ static char	**set_map(t_vector2 map_size, char *map_name)
 	char	*read;
 	int		fd;
 	int		i;
-	
+
 	map = malloc(sizeof(char **) * (map_size.y + 1));
 	if (!map)
 		error_exit_map_creation(read, fd);
@@ -95,8 +95,7 @@ static char	**set_map(t_vector2 map_size, char *map_name)
 	return (map);
 }
 
-
-char	**create_map(char *map_name)
+t_data	*create_map(char *map_name)
 {
 	t_vector2	map_size;
 	t_data		*data;
@@ -105,6 +104,7 @@ char	**create_map(char *map_name)
 	map_size = get_map_size(map_name);
 	validate_components(map_name);
 	map = set_map(map_size, map_name);
-	data = build_validation_map(map, map_size);
-	return (map);
+	data = build_validation_map(map, map_size, map_name);
+	data->map = map;
+	return (data);
 }

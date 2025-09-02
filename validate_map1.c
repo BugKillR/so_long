@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map1.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 15:35:16 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/09/02 15:35:17 by kkeskin          ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static char	**duplicate_map(char **val_map, char **map, t_vector2 map_size)
@@ -23,7 +35,7 @@ static char	**duplicate_map(char **val_map, char **map, t_vector2 map_size)
 	return (new_map);
 }
 
-static char **malloc_map(char **map, t_vector2 map_size)
+static char	**malloc_map(char **map, t_vector2 map_size)
 {
 	char	**validation_map;
 
@@ -33,7 +45,8 @@ static char **malloc_map(char **map, t_vector2 map_size)
 	return (validation_map);
 }
 
-static char *malloc_row(char **map, char **validation_map, t_vector2 map_size, int i)
+static char	*malloc_row(char **map, char **validation_map,
+	t_vector2 map_size, int i)
 {
 	char	*row;
 
@@ -71,21 +84,32 @@ static char	**create_validation_map(char **map, t_vector2 map_size)
 	validation_map[map_size.y + 2] = NULL;
 	return (validation_map);
 }
-t_data	*build_validation_map(char **map, t_vector2 map_size)
+
+t_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
 {
 	char	**validation_map;
 	char	**dup_val_map;
+	int		collectibles;
 	t_data	*data;
-	
+
 	validation_map = create_validation_map(map, map_size);
 	dup_val_map = duplicate_map(validation_map, map, map_size);
 	if (!check_if_map_surrounded_by_walls(dup_val_map, map_size))
+		error_exit_validation(map, validation_map);
+	dup_val_map = duplicate_map(validation_map, map, map_size);
+	collectibles = count_real_collectibles(dup_val_map, map_size, map_name);
+	if (collectibles <= 0)
 	{
-		free_map(dup_val_map);
+		ft_putstr_fd("There is no reachable collectible!\n", 1);
 		error_exit_validation(map, validation_map);
 	}
 	dup_val_map = duplicate_map(validation_map, map, map_size);
-	// Count real collectibles
+	if (!check_if_player_can_reach_door(dup_val_map, map_size))
+		error_exit_validation(map, validation_map);
+	data = malloc(sizeof(t_data));
+	if (!data)
+		error_exit_validation(map, validation_map);
+	data->collectibles = collectibles;
 	free_map(validation_map);
 	return (data);
 }
