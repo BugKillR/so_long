@@ -12,15 +12,6 @@
 
 #include "so_long.h"
 
-static void	error_exit(char	*read, int fd)
-{
-	if (read)
-		free(read);
-	close(fd);
-	ft_putstr_fd("Invalid Map Or Invalid Map Name!\n", 1);
-	exit (1);
-}
-
 static int	count_row(char *row)
 {
 	if (ft_strchr(row, '\n'))
@@ -50,11 +41,11 @@ static void	validate_components(char *map_name)
 		read = get_next_line(fd);
 	}
 	if (exit_c != 1 || start_c != 1 || collect_c < 1)
-		error_exit(read, fd);
+		error_exit_map_creation(read, fd);
 	close(fd);
 }
 
-static t_vector2	validate_map(char *map_name)
+static t_vector2	get_map_size(char *map_name)
 {
 	t_vector2	map_size;
 	char		*read;
@@ -63,7 +54,7 @@ static t_vector2	validate_map(char *map_name)
 	fd = open(map_name, O_RDONLY);
 	read = get_next_line(fd);
 	if (!read)
-		error_exit(read, fd);
+		error_exit_map_creation(read, fd);
 	map_size.x = count_row(read);
 	map_size.y = 1;
 	free(read);
@@ -72,7 +63,7 @@ static t_vector2	validate_map(char *map_name)
 	{
 		map_size.y++;
 		if (map_size.x != count_row(read))
-			error_exit(read, fd);
+			error_exit_map_creation(read, fd);
 		free(read);
 		read = get_next_line(fd);
 	}
@@ -80,19 +71,16 @@ static t_vector2	validate_map(char *map_name)
 	return (map_size);
 }
 
-char	**create_map(char *map_name)
+static char	**set_map(t_vector2 map_size, char *map_name)
 {
-	t_vector2	map_size;
-	char		**map;
-	char		*read;
-	int			fd;
-	int			i;
-
-	map_size = validate_map(map_name);
-	validate_components(map_name);
+	char	**map;
+	char	*read;
+	int		fd;
+	int		i;
+	
 	map = malloc(sizeof(char **) * (map_size.y + 1));
 	if (!map)
-		error_exit(read, fd);
+		error_exit_map_creation(read, fd);
 	fd = open(map_name, O_RDONLY);
 	i = 0;
 	while (i < map_size.y)
@@ -104,5 +92,19 @@ char	**create_map(char *map_name)
 	}
 	map[map_size.y] = NULL;
 	close(fd);
+	return (map);
+}
+
+
+char	**create_map(char *map_name)
+{
+	t_vector2	map_size;
+	t_data		*data;
+	char		**map;
+
+	map_size = get_map_size(map_name);
+	validate_components(map_name);
+	map = set_map(map_size, map_name);
+	data = build_validation_map(map, map_size);
 	return (map);
 }

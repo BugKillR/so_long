@@ -16,9 +16,10 @@ static void	fill(char **map, t_flood_fill_data data, char search, char swap)
 {
 	if (data.curr.x < 0 || data.curr.y < 0 || data.curr.x >= data.size.x
 		|| data.curr.y >= data.size.y
-		|| map[data.curr.y][data.curr.x] != search)
+		|| (map[data.curr.y][data.curr.x] != search && map[data.curr.y][data.curr.x] != data.ignored))
 		return ;
-	map[data.curr.y][data.curr.x] = swap;
+	if (map[data.curr.y][data.curr.x] != data.ignored)
+		map[data.curr.y][data.curr.x] = swap;
 	data.curr.x += 1;
 	fill(map, data, search, swap);
 	data.curr.x -= 2;

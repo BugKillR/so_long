@@ -28,8 +28,9 @@ typedef struct s_vector2
 
 typedef struct s_flood_fill_data
 {
+	char		ignored;
 	t_vector2	size;
-	t_vector2	beginning;
+	t_vector2	curr;
 }				t_flood_fill_data;
 
 # ifndef INT_MIN

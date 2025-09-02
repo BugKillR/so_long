@@ -21,17 +21,6 @@ int main(int argc, char *argv[])
     if (argc != 2 || !check_file_extension(argv[argc - 1]))
         return (ft_putchar_fd('\n', 1), 1);
     map = create_map(argv[1]);
-	i = 0;
-	while (map[i])
-	{
-		k = 0;
-		while (map[i][k])
-		{
-			ft_putchar_fd(map[i][k], 1);
-			k++;
-		}
-		i++;
-	}
 	free_map(map);
 	return (0);
 }
