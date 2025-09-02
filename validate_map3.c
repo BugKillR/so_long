@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map3.c                                    :+:      :+:    :+:   */
+/*   validate_map2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/02 15:39:50 by kkeskin           #+#    #+#             */
-/*   Updated: 2025/09/02 15:39:50 by kkeskin          ###   ########.tr       */
+/*   Created: 2025/09/02 15:36:10 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/09/02 15:36:11 by kkeskin          ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	convert_extra_components_to_space_no_c(char **map)
+static void	convert_extra_components_to_space(char **map)
+{
+	int	i;
+	int	k;
+	
+	i = 0;
+	while (map[i])
+	{
+		k = 0;
+		while (map[i][k])
+		{
+			if (map[i][k] == 'E' || map[i][k] == 'C' || map[i][k] == 'D')
+			map[i][k] = '0';
+			k++;
+		}
+		i++;
+	}
+}
+
+t_vector2	find_component_location(char **map, char component)
 {
 	int	i;
 	int	k;
@@ -23,74 +42,35 @@ static void	convert_extra_components_to_space_no_c(char **map)
 		k = 0;
 		while (map[i][k])
 		{
-			if (map[i][k] == 'E' || map[i][k] == 'D')
-				map[i][k] = '0';
+			if (map[i][k] == component)
+				return ((t_vector2){.x = k, .y = i});
 			k++;
 		}
 		i++;
 	}
+	return ((t_vector2){.x = k, .y = i});
 }
 
-static void	convert_real_collectibles_to_k(char **map, t_vector2 map_size)
-{
-	int	y;
-	int	x;
-
-	y = 1;
-	while (y <= map_size.y)
-	{
-		x = 1;
-		while (x <= map_size.x)
-		{
-			if (map[y][x] == 'C')
-			{
-				if (map[y - 1][x] == 'F'
-					|| map[y + 1][x] == 'F'
-					|| map[y][x - 1] == 'F'
-					|| map[y][x + 1] == 'F')
-					map[y][x] = 'K';
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-static int	count_k(char **map)
-{
-	int	count;
-	int	x;
-	int	y;
-
-	count = 0;
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'K')
-				count++;
-			x++;
-		}
-		y++;
-	}
-	return (count);
-}
-
-int	count_real_collectibles(char **map, t_vector2 map_size, char *map_name)
+int	check_if_map_surrounded_by_walls(char **map, t_vector2 map_size)
 {
 	t_flood_fill_data	flood_data;
-	int					count;
-
-	count = 0;
-	flood_data.curr = find_component_location(map, 'P');
-	flood_data.size = (t_vector2){map_size.x + 2, map_size.y + 2};
+	t_vector2			beginning;
+	t_vector2			size;
+	
+	beginning = find_component_location(map, 'P');
+	convert_extra_components_to_space(map);
+	size = (t_vector2){.x = map_size.x + 2, .y = map_size.y + 2};
+	flood_data.curr = beginning;
+	flood_data.size = size;
 	flood_data.ignored = 'P';
-	convert_extra_components_to_space_no_c(map);
 	ft_flood_fill(map, flood_data, '0', 'F');
-	convert_real_collectibles_to_k(map, map_size);
-	count = count_k(map);
+	if (map[0][0] == '0'
+		&& map[0][map_size.x + 1] == '0'
+		&& map[map_size.y + 1][0] == '0'
+		&& map[map_size.y + 1][map_size.x + 1] == '0')
+		ft_putendl_fd("Playground is surrounded by walls!", 1);
+	else
+		return (ft_putendl_fd("Invalid Map!", 1), 0);
 	free_map(map);
-	return (count);
+	return (1);
 }

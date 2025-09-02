@@ -92,6 +92,7 @@ t_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
 	int		collectibles;
 	t_data	*data;
 
+	validate_components(map, map_size);
 	validation_map = create_validation_map(map, map_size);
 	dup_val_map = duplicate_map(validation_map, map, map_size);
 	if (!check_if_map_surrounded_by_walls(dup_val_map, map_size))
@@ -110,6 +111,5 @@ t_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
 	if (!data)
 		error_exit_validation(map, validation_map);
 	data->collectibles = collectibles;
-	free_map(validation_map);
-	return (data);
+	return (free_map(validation_map), data);
 }

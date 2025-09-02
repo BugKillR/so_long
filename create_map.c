@@ -19,7 +19,7 @@ static int	count_row(char *row)
 	return (ft_strlen(row));
 }
 
-static void	validate_components(char *map_name)
+static void	validate_component_count(char *map_name)
 {
 	char	*read;
 	int		exit_c;
@@ -102,7 +102,7 @@ t_data	*create_map(char *map_name)
 	char		**map;
 
 	map_size = get_map_size(map_name);
-	validate_components(map_name);
+	validate_component_count(map_name);
 	map = set_map(map_size, map_name);
 	data = build_validation_map(map, map_size, map_name);
 	data->map = map;
