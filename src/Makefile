@@ -2,12 +2,16 @@ NAME = src.a
 
 SRCS = create_map.c \
 		free.c \
+		free2.c \
 		map_debugger.c \
 		validate_map1.c \
 		validate_map2.c \
 		validate_map3.c \
 		validate_map4.c \
-		validate_map5.c
+		validate_map5.c \
+		mlx_setup.c \
+		render.c \
+		keybinds.c
 
 OBJS = $(SRCS:.c=.o)
 

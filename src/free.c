@@ -21,7 +21,7 @@ void	error_exit_validation(char **map, char **validation_map)
 	exit (1);
 }
 
-void	free_data_exit(t_data *data)
+void	free_game_data_exit(t_game_data *data)
 {
 	if (data)
 	{
@@ -30,6 +30,28 @@ void	free_data_exit(t_data *data)
 		free(data);
 	}
 	exit (0);
+}
+
+void free_data_and_exit(t_data *data, int exitcode)
+{
+	if (data->game_data)
+	{
+		if (data->game_data->map)
+			free_map(data->game_data->map);
+		free(data->game_data);
+	}
+	if (data->mlx && data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->mlx && data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	free_sprites(data);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	free(data);
+	exit (exitcode);
 }
 
 void	free_map(char **map)

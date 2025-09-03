@@ -28,7 +28,7 @@ SRC			= $(SRC_DIR)/src.a
 # ---------- Commands ----------
 
 all: $(LIBFT) $(MLX) $(GNL) $(SRC)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(MAIN) $(SRC) $(GNL) $(LIBFT) $(MLX) -o $(EXE)
+	$(CC) -g $(CFLAGS) $(MAIN) $(SRC) $(GNL) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(EXE)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) all

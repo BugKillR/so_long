@@ -85,12 +85,12 @@ static char	**create_validation_map(char **map, t_vector2 map_size)
 	return (validation_map);
 }
 
-t_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
+t_game_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
 {
-	char	**validation_map;
-	char	**dup_val_map;
-	int		collectibles;
-	t_data	*data;
+	char		**validation_map;
+	char		**dup_val_map;
+	int			collectibles;
+	t_game_data	*data;
 
 	validate_components(map, map_size);
 	validation_map = create_validation_map(map, map_size);
@@ -107,7 +107,7 @@ t_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
 	dup_val_map = duplicate_map(validation_map, map, map_size);
 	if (!check_if_player_can_reach_door(dup_val_map, map_size))
 		error_exit_validation(map, validation_map);
-	data = malloc(sizeof(t_data));
+	data = malloc(sizeof(t_game_data));
 	if (!data)
 		error_exit_validation(map, validation_map);
 	data->collectibles = collectibles;

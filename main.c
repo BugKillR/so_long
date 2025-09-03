@@ -26,13 +26,14 @@ static int	check_file_extension(char *map_name)
 
 int	main(int argc, char *argv[])
 {
-	t_data	*data;
+	t_game_data	*data;
 
 	if (argc != 2)
 		return (ft_putstr_fd("Select Map!\n", 1), 1);
 	if (!check_file_extension(argv[argc - 1]))
 		return (ft_putchar_fd('\n', 1), 1);
 	data = create_map(argv[1]);
-	free_data_exit(data);
+	mlx_setup(data);
+	free_game_data_exit(data);
 	return (0);
 }
