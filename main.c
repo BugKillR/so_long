@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "./src/so_long.h"
 
 static int	check_file_extension(char *map_name)
 {
@@ -27,8 +27,6 @@ static int	check_file_extension(char *map_name)
 int	main(int argc, char *argv[])
 {
 	t_data	*data;
-	int		i;
-	int		k;
 
 	if (argc != 2)
 		return (ft_putstr_fd("Select Map!\n", 1), 1);

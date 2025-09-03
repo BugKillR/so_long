@@ -1,8 +1,5 @@
 NAME = get_next_line.a
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
-
 SRCS	= get_next_line.c \
 			get_next_line_utils.c
 

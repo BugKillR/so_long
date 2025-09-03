@@ -1,8 +1,5 @@
 NAME	= libft.a
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
-
 SRCS	= ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
@@ -74,4 +71,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re
-
