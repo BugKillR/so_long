@@ -26,7 +26,7 @@ static t_data	*instantiate_data(t_game_data *game_data)
 	data->w = data->game_data->map_size.x * 64;
 	data->h = data->game_data->map_size.y * 64;
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, data->w, data->h, "so_long");
+	data->win = mlx_new_window(data->mlx, data->w, data->h, game_data->map_name);
 	data->img = mlx_new_image(data->mlx, data->w, data->h);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_len, &data->endian);
 	ft_putstr_fd("\n ----------- Game ----------- \n\n", 1);

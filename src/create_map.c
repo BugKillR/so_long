@@ -100,12 +100,18 @@ t_game_data	*create_map(char *map_name)
 	t_vector2	map_size;
 	t_game_data	*data;
 	char		**map;
+	char		*last_slash;
 
 	map_size = get_map_size(map_name);
 	validate_component_count(map_name);
 	map = set_map(map_size, map_name);
 	data = build_validation_map(map, map_size, map_name);
-	//data->map_name = ft_strlcat(data->map_name, ft_strrchr(map_name, '/'), ft_strlen(map_name) - (ft_strrchr(map_name, '/') - map_name));
 	data->map = map;
+	data->map_size = map_size;
+	last_slash = ft_strrchr(map_name, '/');
+	if (last_slash)
+    	data->map_name = last_slash + 1;
+	else
+    	data->map_name = map_name;	
 	return (data);
 }
