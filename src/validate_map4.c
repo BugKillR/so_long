@@ -23,7 +23,7 @@ static void	convert_extra_components_to_space_no_c(char **map)
 		k = 0;
 		while (map[i][k])
 		{
-			if (map[i][k] == 'E' || map[i][k] == 'D')
+			if (map[i][k] == 'E')
 				map[i][k] = '0';
 			k++;
 		}

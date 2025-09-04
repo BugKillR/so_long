@@ -9,7 +9,7 @@ static t_sprites	set_sprites(t_data *data)
 	sprites.bg = mlx_xpm_file_to_image(data->mlx, "./textures/Background.xpm", &w, &h);
 	sprites.p1 = mlx_xpm_file_to_image(data->mlx, "./textures/DemoPlayer.xpm", &w, &h);
 	sprites.e1 = mlx_xpm_file_to_image(data->mlx, "./textures/Door1.xpm", &w, &h);
-	sprites.d1 = NULL;
+	sprites.d1 = mlx_xpm_file_to_image(data->mlx, "./textures/Enemy.xpm", &w, &h);
 	sprites.c1 = mlx_xpm_file_to_image(data->mlx, "./textures/Collectible1.xpm", &w, &h);
 	sprites.w1 = mlx_xpm_file_to_image(data->mlx, "./textures/Wall.xpm", &w, &h);
 	return (sprites);

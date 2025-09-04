@@ -14,3 +14,13 @@ void	put_wall(t_data *data, int x, int y)
 {
 	mlx_put_image_to_window(data->mlx, data->win, data->sprites.w1, x, y);
 }
+
+void	put_enemy(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprites.d1, x, y);
+}
+
+void	put_door(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprites.e1, x, y);
+}

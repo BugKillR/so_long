@@ -113,5 +113,7 @@ void		swap_player_space(t_data *data, t_vector2 to_move);
 void 		put_collectible(t_data *data, int x, int y);
 void		put_player(t_data *data, int x, int y);
 void		put_wall(t_data *data, int x, int y);
+void		put_enemy(t_data *data, int x, int y);
+void		put_door(t_data *data, int x, int y);
 
 #endif
