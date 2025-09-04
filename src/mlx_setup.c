@@ -10,7 +10,7 @@ static t_sprites	set_sprites(t_data *data)
 	sprites.p1 = NULL;
 	sprites.e1 = NULL;
 	sprites.d1 = mlx_xpm_file_to_image(data->mlx, "./textures/Door1.xpm", &w, &h);
-	sprites.c1 = NULL;
+	sprites.c1 = mlx_xpm_file_to_image(data->mlx, "./textures/Collectible1.xpm", &w, &h);
 	sprites.w1 = mlx_xpm_file_to_image(data->mlx, "./textures/Wall.xpm", &w, &h);
 	return (sprites);
 }

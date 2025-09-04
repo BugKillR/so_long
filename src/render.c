@@ -15,6 +15,11 @@ static void put_wall(t_data *data, int x, int y)
 	mlx_put_image_to_window(data->mlx, data->win, data->sprites.w1, x, y);
 }
 
+static void put_collectible(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprites.c1, x, y);
+}
+
 int render(t_data *data)
 {
 	int	x;
@@ -32,6 +37,8 @@ int render(t_data *data)
 				put_door(data, x * 64, y * 64);
 			if (data->game_data->map[y][x] == '1')
 				put_wall(data, x * 64, y * 64);
+			if (data->game_data->map[y][x] == 'C')
+				put_collectible(data, x * 64, y * 64);
 			x++;
 		}
 		y++;
