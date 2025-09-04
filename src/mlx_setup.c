@@ -7,9 +7,9 @@ static t_sprites	set_sprites(t_data *data)
 	int	h;
 
 	sprites.bg = mlx_xpm_file_to_image(data->mlx, "./textures/Background.xpm", &w, &h);
-	sprites.p1 = NULL;
-	sprites.e1 = NULL;
-	sprites.d1 = mlx_xpm_file_to_image(data->mlx, "./textures/Door1.xpm", &w, &h);
+	sprites.p1 = mlx_xpm_file_to_image(data->mlx, "./textures/DemoPlayer.xpm", &w, &h);
+	sprites.e1 = mlx_xpm_file_to_image(data->mlx, "./textures/Door1.xpm", &w, &h);
+	sprites.d1 = NULL;
 	sprites.c1 = mlx_xpm_file_to_image(data->mlx, "./textures/Collectible1.xpm", &w, &h);
 	sprites.w1 = mlx_xpm_file_to_image(data->mlx, "./textures/Wall.xpm", &w, &h);
 	return (sprites);
@@ -23,6 +23,7 @@ static t_data	*instantiate_data(t_game_data *game_data)
 	if (!data)
 		free_game_data_exit(game_data);
 	data->game_data = game_data;
+	data->movement_c = 0;
 	data->w = data->game_data->map_size.x * 64;
 	data->h = data->game_data->map_size.y * 64;
 	data->mlx = mlx_init();
@@ -49,6 +50,8 @@ void	mlx_setup(t_game_data *game_data)
 		ft_putstr_fd("\n", 1);
 		free_data_and_exit(data, 1);
 	}
+	data->game_data->door_location 
+		= find_component_location(data->game_data->map, 'E');
 	mlx_loop_hook(data->mlx, render, data);
 	mlx_key_hook(data->win, keybinds, data);
 	mlx_loop(data->mlx);

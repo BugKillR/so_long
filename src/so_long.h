@@ -19,8 +19,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define MAX_WIDTH_ON_DEVICE 1920
-# define MAX_HEIGHT_ON_DEVICE 1080
+# define MAX_WIDTH_ON_DEVICE 3840
+# define MAX_HEIGHT_ON_DEVICE 2160
 
 # define KEY_ESC	65307
 # define KEY_Q		113
@@ -36,10 +36,11 @@
 typedef struct s_game_data
 {
 	t_vector2	map_size;
+	t_vector2	door_location;
 	char		*map_name;
 	char		**map;
 
-	int		collectibles;
+	int			collectibles;
 }				t_game_data;
 
 typedef struct s_sprites
@@ -66,6 +67,8 @@ typedef struct s_data
 
 	t_game_data	*game_data;
 	t_sprites	sprites;
+	t_vector2	p_v2;
+	int			movement_c;
 }				t_data;
 
 //	----- Map Creation -----
@@ -76,7 +79,7 @@ t_game_data	*build_validation_map(char **map, t_vector2 map_size,
 
 //	----- Validation Tools -----
 
-void    	validate_components(char **map, t_vector2 map_size);
+void		validate_components(char **map, t_vector2 map_size);
 t_vector2	find_component_location(char **map, char component);
 int			check_if_map_surrounded_by_walls(char **map, t_vector2 map_size);
 int			check_if_player_can_reach_door(char **map, t_vector2 map_size);
@@ -101,5 +104,14 @@ void		print_map(char **map);
 void		mlx_setup(t_game_data *game_data);
 int			keybinds(int keycode, void *param);
 int			render(t_data *data);
+
+//	----- Movement -----
+
+void		move(char *rotation, char **map, t_data *data);
+void		door_player(t_data *data, t_vector2 to_move);
+void		swap_player_space(t_data *data, t_vector2 to_move);
+void 		put_collectible(t_data *data, int x, int y);
+void		put_player(t_data *data, int x, int y);
+void		put_wall(t_data *data, int x, int y);
 
 #endif

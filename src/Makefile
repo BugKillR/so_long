@@ -11,7 +11,10 @@ SRCS = create_map.c \
 		validate_map5.c \
 		mlx_setup.c \
 		render.c \
-		keybinds.c
+		render2.c \
+		keybinds.c \
+		move.c \
+		move2.c
 
 OBJS = $(SRCS:.c=.o)
 

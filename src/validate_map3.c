@@ -48,7 +48,7 @@ t_vector2	find_component_location(char **map, char component)
 		}
 		i++;
 	}
-	return ((t_vector2){.x = k, .y = i});
+	return ((t_vector2){.x = -1, .y = -1});
 }
 
 int	check_if_map_surrounded_by_walls(char **map, t_vector2 map_size)
