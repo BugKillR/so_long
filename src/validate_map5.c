@@ -89,6 +89,6 @@ int	check_if_player_can_reach_door(char **map, t_vector2 map_size)
 	ft_flood_fill(map, flood_data, '0', 'F');
 	convert_door_to_e_if_reachable(map, map_size);
 	if (count_e(map) != 1)
-		return (ft_putstr_fd("Error!\n", 1), free_map(map), 0);
+		return (ft_putstr_fd("Error\n", 1), free_map(map), 0);
 	return (ft_putstr_fd("Door is reachable!\n", 1), free_map(map), 1);
 }

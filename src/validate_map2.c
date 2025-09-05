@@ -48,7 +48,7 @@ void	check_borders(char **map, t_vector2 map_size)
 	{
 		if (map[0][x] != '1' || map[map_size.y - 1][x] != '1')
 		{
-			ft_putstr_fd("Error!\n", 1);
+			ft_putstr_fd("Error\n", 1);
 			free_map(map);
 			exit(1);
 		}
@@ -59,7 +59,7 @@ void	check_borders(char **map, t_vector2 map_size)
 	{
 		if (map[y][0] != '1' || map[y][map_size.x - 1] != '1')
 		{
-			ft_putstr_fd("Error!\n", 1);
+			ft_putstr_fd("Error\n", 1);
 			free_map(map);
 			exit(1);
 		}
