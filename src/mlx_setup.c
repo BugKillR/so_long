@@ -30,6 +30,8 @@ static t_sprites	set_sprites(t_data *data)
 			"./textures/Enemy.xpm", &w, &h);
 	sprites.c1 = mlx_xpm_file_to_image(data->mlx,
 			"./textures/Collectible1.xpm", &w, &h);
+	sprites.c2 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Collectible2.xpm", &w, &h);
 	sprites.w1 = mlx_xpm_file_to_image(data->mlx,
 			"./textures/Wall.xpm", &w, &h);
 	sprites.g1 = mlx_xpm_file_to_image(data->mlx,

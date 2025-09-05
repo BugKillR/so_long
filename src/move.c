@@ -27,7 +27,8 @@ static void	move_up(char **map, t_data *data, int y, int x)
 		ft_putstr_fd("You died!\n", 1);
 		free_data_and_exit(data, 0);
 	}
-	else if (map[y - 1][x] == 'C')
+	else if (map[to_move.y][to_move.x] == 'C'
+		|| map[to_move.y][to_move.x] == 'K')
 	{
 		swap_player_space(data, to_move);
 		data->game_data->collectibles--;
@@ -52,7 +53,8 @@ static void	move_left(char **map, t_data *data, int y, int x)
 		ft_putstr_fd("You died!\n", 1);
 		free_data_and_exit(data, 0);
 	}
-	else if (map[y][x - 1] == 'C')
+	else if (map[to_move.y][to_move.x] == 'C'
+		|| map[to_move.y][to_move.x] == 'K')
 	{
 		swap_player_space(data, to_move);
 		data->game_data->collectibles--;
@@ -77,7 +79,8 @@ static void	move_down(char **map, t_data *data, int y, int x)
 		ft_putstr_fd("You died!\n", 1);
 		free_data_and_exit(data, 0);
 	}
-	else if (map[y + 1][x] == 'C')
+	else if (map[to_move.y][to_move.x] == 'C'
+		|| map[to_move.y][to_move.x] == 'K')
 	{
 		swap_player_space(data, to_move);
 		data->game_data->collectibles--;
@@ -102,7 +105,8 @@ static void	move_right(char **map, t_data *data, int y, int x)
 		ft_putstr_fd("You died!\n", 1);
 		free_data_and_exit(data, 0);
 	}
-	else if (map[to_move.y][to_move.x] == 'C')
+	else if (map[to_move.y][to_move.x] == 'C'
+		|| map[to_move.y][to_move.x] == 'K')
 	{
 		swap_player_space(data, to_move);
 		data->game_data->collectibles--;
@@ -112,14 +116,14 @@ static void	move_right(char **map, t_data *data, int y, int x)
 	print_movement_c(data);
 }
 
-void	move(char *rotation, char **map, t_data *data)
+void	move(int rotation, char **map, t_data *data)
 {
-	if (rotation == "Up")
+	if (rotation == 1)
 		move_up(map, data, data->p_v2.y, data->p_v2.x);
-	else if (rotation == "Left")
+	else if (rotation == 2)
 		move_left(map, data, data->p_v2.y, data->p_v2.x);
-	else if (rotation == "Down")
+	else if (rotation == 3)
 		move_down(map, data, data->p_v2.y, data->p_v2.x);
-	else if (rotation == "Right")
+	else if (rotation == 4)
 		move_right(map, data, data->p_v2.y, data->p_v2.x);
 }

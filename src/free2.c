@@ -26,6 +26,8 @@ void	free_sprites(t_data *data)
 		mlx_destroy_image(data->mlx, data->sprites.d1);
 	if (data->sprites.c1)
 		mlx_destroy_image(data->mlx, data->sprites.c1);
+	if (data->sprites.c2)
+		mlx_destroy_image(data->mlx, data->sprites.c2);
 	if (data->sprites.w1)
 		mlx_destroy_image(data->mlx, data->sprites.w1);
 	if (data->sprites.g1)

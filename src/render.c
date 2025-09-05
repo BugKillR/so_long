@@ -46,7 +46,9 @@ static void	render_while_loop(t_data *data, int x, int y)
 	if (data->game_data->map[y][x] == '1')
 		put_wall(data, x * 64, y * 64);
 	else if (data->game_data->map[y][x] == 'C')
-		put_collectible(data, x * 64, y * 64);
+		put_collectible1(data, x * 64, y * 64);
+	else if (data->game_data->map[y][x] == 'K')
+		put_collectible2(data, x * 64, y * 64);
 	else if (data->game_data->map[y][x] == 'P')
 		put_player(data, x * 64, y * 64);
 	else if (data->game_data->map[y][x] == 'E')

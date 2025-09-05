@@ -41,3 +41,9 @@ void	put_str_on_screen(char *str, t_data *data)
 	mlx_string_put(data->mlx, data->win, 10, 20, 0x00FFFFFF, text);
 	free(text);
 }
+
+void	put_collectible2(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprites.c2, x, y);
+	data->game_data->map[y / 64][x / 64] = 'C';
+}
