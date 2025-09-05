@@ -29,6 +29,7 @@ typedef struct s_vector2
 typedef struct s_flood_fill_data
 {
 	char		ignored;
+	char		swap_i;
 	t_vector2	size;
 	t_vector2	curr;
 }				t_flood_fill_data;

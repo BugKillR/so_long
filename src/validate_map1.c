@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static char	**duplicate_map(char **val_map, char **map, t_vector2 map_size)
+char	**duplicate_map(char **val_map, char **map, t_vector2 map_size)
 {
 	char	**new_map;
 	int		i;

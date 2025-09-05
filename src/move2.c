@@ -36,6 +36,9 @@ void	door_player(t_data *data, t_vector2 to_move)
 
 void	swap_player_space(t_data *data, t_vector2 to_move)
 {
-	data->game_data->map[to_move.y][to_move.x] = 'P';
 	data->game_data->map[data->p_v2.y][data->p_v2.x] = '0';
+	if (!find_if_component_available(data->game_data->map, 'P'))
+		data->game_data->map[to_move.y][to_move.x] = 'P';
+	else
+		data->movement_c--;
 }

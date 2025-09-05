@@ -19,7 +19,7 @@ void	print_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		ft_putstr_fd(map[i], 1);
+		ft_putendl_fd(map[i], 1);
 		i++;
 	}
 }

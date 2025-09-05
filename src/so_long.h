@@ -94,11 +94,14 @@ typedef struct s_data
 t_game_data	*create_map(char *map_name);
 t_game_data	*build_validation_map(char **map, t_vector2 map_size,
 				char *map_name);
+char		**duplicate_map(char **val_map, char **map,
+				t_vector2 map_size);
 
 //	----- Validation Tools -----
 
 void		validate_components(char **map, t_vector2 map_size);
 t_vector2	find_component_location(char **map, char component);
+int			find_if_component_available(char **map, char component);
 int			check_if_map_surrounded_by_walls(char **map, t_vector2 map_size);
 int			check_if_player_can_reach_door(char **map, t_vector2 map_size);
 int			count_real_collectibles(char **map, t_vector2 map_size,
