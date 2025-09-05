@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	t_game_data	*data;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Select Map!\n", 1), 1);
+		return (ft_putstr_fd("Error\n", 1), 1);
 	if (!check_file_extension(argv[argc - 1]))
 		return (ft_putchar_fd('\n', 1), 1);
 	data = create_map(argv[1]);
