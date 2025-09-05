@@ -20,7 +20,7 @@ static int	check_file_extension(char *map_name)
 	if (map_name[len - 1] == 'r' && map_name[len - 2] == 'e'
 		&& map_name[len - 3] == 'b' && map_name[len - 4] == '.')
 		return (1);
-	ft_putstr_fd("Invalid File Extension!\nError!\n", 1);
+	ft_putstr_fd("Invalid File Extension!\nError!", 1);
 	return (0);
 }
 
