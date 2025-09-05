@@ -36,6 +36,7 @@ static void	move_up(char **map, t_data *data, int y, int x)
 	else
 		swap_player_space(data, to_move);
 	print_movement_c(data);
+	data->sprites.p = data->sprites.p2;
 }
 
 static void	move_left(char **map, t_data *data, int y, int x)
@@ -62,6 +63,7 @@ static void	move_left(char **map, t_data *data, int y, int x)
 	else
 		swap_player_space(data, to_move);
 	print_movement_c(data);
+	data->sprites.p = data->sprites.p4;
 }
 
 static void	move_down(char **map, t_data *data, int y, int x)
@@ -88,6 +90,7 @@ static void	move_down(char **map, t_data *data, int y, int x)
 	else
 		swap_player_space(data, to_move);
 	print_movement_c(data);
+	data->sprites.p = data->sprites.p1;
 }
 
 static void	move_right(char **map, t_data *data, int y, int x)
@@ -114,6 +117,7 @@ static void	move_right(char **map, t_data *data, int y, int x)
 	else
 		swap_player_space(data, to_move);
 	print_movement_c(data);
+	data->sprites.p = data->sprites.p3;
 }
 
 void	move(int rotation, char **map, t_data *data)

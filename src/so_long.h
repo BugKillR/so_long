@@ -48,10 +48,23 @@ typedef struct s_game_data
 typedef struct s_sprites
 {
 	void	*bg;
+	void	*p;
 	void	*p1;
+	void	*p2;
+	void	*p3;
+	void	*p4;
+	void	*e;
 	void	*e1;
 	void	*e2;
+	void	*e3;
+	void	*e4;
+	void	*e5;
+	void	*e6;
+	void	*e7;
+	void	*e8;
+	void	*d;
 	void	*d1;
+	void	*d2;
 	void	*c1;
 	void	*c2;
 	void	*w1;

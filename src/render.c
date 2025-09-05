@@ -89,5 +89,6 @@ int	render(t_data *data)
 		}
 		y++;
 	}
+	usleep(35000);
 	return (0);
 }

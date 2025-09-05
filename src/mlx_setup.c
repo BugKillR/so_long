@@ -12,6 +12,34 @@
 
 #include "so_long.h"
 
+static t_sprites	set_sprites2(t_data *data, t_sprites sprites)
+{
+	int	w;
+	int	h;
+
+	sprites.e1 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door1.xpm", &w, &h);
+	sprites.e2 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door2.xpm", &w, &h);
+	sprites.e3 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door3.xpm", &w, &h);
+	sprites.e4 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door4.xpm", &w, &h);
+	sprites.e5 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door5.xpm", &w, &h);
+	sprites.e6 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door6.xpm", &w, &h);
+	sprites.e7 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door7.xpm", &w, &h);
+	sprites.e8 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Door8.xpm", &w, &h);
+	sprites.g1 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/DoorNPlayer.xpm", &w, &h);
+	sprites.d2 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/Enemy2.xpm", &w, &h);
+	return (sprites);
+}
+
 static t_sprites	set_sprites(t_data *data)
 {
 	t_sprites	sprites;
@@ -21,21 +49,22 @@ static t_sprites	set_sprites(t_data *data)
 	sprites.bg = mlx_xpm_file_to_image(data->mlx,
 			"./textures/Background.xpm", &w, &h);
 	sprites.p1 = mlx_xpm_file_to_image(data->mlx,
-			"./textures/DemoPlayer.xpm", &w, &h);
-	sprites.e1 = mlx_xpm_file_to_image(data->mlx,
-			"./textures/Door1.xpm", &w, &h);
-	sprites.e2 = mlx_xpm_file_to_image(data->mlx,
-			"./textures/Door2.xpm", &w, &h);
+			"./textures/PlayerIdle.xpm", &w, &h);
+	sprites.p2 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/PlayerUp.xpm", &w, &h);
+	sprites.p3 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/PlayerRight.xpm", &w, &h);
+	sprites.p4 = mlx_xpm_file_to_image(data->mlx,
+			"./textures/PlayerLeft.xpm", &w, &h);
 	sprites.d1 = mlx_xpm_file_to_image(data->mlx,
 			"./textures/Enemy.xpm", &w, &h);
 	sprites.c1 = mlx_xpm_file_to_image(data->mlx,
-			"./textures/Collectible1.xpm", &w, &h);
+			"./textures/Coll1.xpm", &w, &h);
 	sprites.c2 = mlx_xpm_file_to_image(data->mlx,
-			"./textures/Collectible2.xpm", &w, &h);
+			"./textures/Coll2.xpm", &w, &h);
 	sprites.w1 = mlx_xpm_file_to_image(data->mlx,
 			"./textures/Wall.xpm", &w, &h);
-	sprites.g1 = mlx_xpm_file_to_image(data->mlx,
-			"./textures/DoorNPlayer.xpm", &w, &h);
+	sprites = set_sprites2(data, sprites);
 	return (sprites);
 }
 
@@ -86,6 +115,9 @@ void	mlx_setup(t_game_data *game_data)
 
 	data = instantiate_data(game_data);
 	data->sprites = set_sprites(data);
+	data->sprites.p = data->sprites.p1;
+	data->sprites.e = data->sprites.e1;
+	data->sprites.d = data->sprites.d1;
 	if (data->w > MAX_WIDTH_ON_DEVICE || data->h > MAX_HEIGHT_ON_DEVICE)
 	{
 		ft_putstr_fd("Map is bigger than screen!\nMap Width: ", 1);
@@ -99,8 +131,8 @@ void	mlx_setup(t_game_data *game_data)
 		= find_component_location(data->game_data->map, 'E');
 	set_walls(data, data->game_data->map_size);
 	mlx_hook(data->win, DESTROY_NOTIFY, 0, close_window, data);
-	mlx_loop_hook(data->mlx, render, data);
 	mlx_key_hook(data->win, keybinds, data);
+	mlx_loop_hook(data->mlx, render, data);
 	mlx_loop(data->mlx);
 	return ;
 }

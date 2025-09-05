@@ -19,7 +19,31 @@ void	put_door_n_player(t_data *data, int x, int y)
 
 void	put_door_open(t_data *data, int x, int y)
 {
-	mlx_put_image_to_window(data->mlx, data->win, data->sprites.e2, x, y);
+	if (data->sprites.e == data->sprites.e5)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprites.e5, x, y);
+		data->sprites.e = data->sprites.e6;
+	}
+	else if (data->sprites.e == data->sprites.e6)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprites.e6, x, y);
+		data->sprites.e = data->sprites.e7;
+	}
+	else if (data->sprites.e == data->sprites.e7)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprites.e7, x, y);
+		data->sprites.e = data->sprites.e8;
+	}
+	else if (data->sprites.e == data->sprites.e8)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprites.e8, x, y);
+		data->sprites.e = data->sprites.e5;
+	}
+	else
+	{
+		data->sprites.e = data->sprites.e5;
+		mlx_put_image_to_window(data->mlx, data->win, data->sprites.e5, x, y);
+	}
 }
 
 static char	*string_to_print(char *text, t_data *data)
