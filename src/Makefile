@@ -13,7 +13,7 @@ SRCS = create_map.c \
 		render.c \
 		render2.c \
 		render3.c \
-		keybinds.c \
+		input.c \
 		move.c \
 		move2.c
 

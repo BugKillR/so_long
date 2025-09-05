@@ -98,6 +98,7 @@ void	mlx_setup(t_game_data *game_data)
 	data->game_data->door_location
 		= find_component_location(data->game_data->map, 'E');
 	set_walls(data, data->game_data->map_size);
+	mlx_hook(data->win, DESTROY_NOTIFY, 0, close_window, data);
 	mlx_loop_hook(data->mlx, render, data);
 	mlx_key_hook(data->win, keybinds, data);
 	mlx_loop(data->mlx);

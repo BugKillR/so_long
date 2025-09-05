@@ -33,6 +33,8 @@
 # define KEY_S		115
 # define KEY_D		100
 
+# define DESTROY_NOTIFY 17
+
 typedef struct s_game_data
 {
 	t_vector2	map_size;
@@ -108,6 +110,7 @@ void		print_movement_c(t_data *data);
 
 void		mlx_setup(t_game_data *game_data);
 int			keybinds(int keycode, void *param);
+int			close_window(void *param);
 int			render(t_data *data);
 
 //	----- Movement -----

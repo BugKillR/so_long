@@ -29,3 +29,12 @@ int	keybinds(int keycode, void *param)
 		move(4, data->game_data->map, data);
 	return (0);
 }
+
+int	close_window(void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	free_data_and_exit(data, 0);
+	return (0);
+}
