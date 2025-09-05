@@ -110,8 +110,8 @@ t_game_data	*create_map(char *map_name)
 	data->map_size = map_size;
 	last_slash = ft_strrchr(map_name, '/');
 	if (last_slash)
-    	data->map_name = last_slash + 1;
+		data->map_name = last_slash + 1;
 	else
-    	data->map_name = map_name;	
+		data->map_name = map_name;
 	return (data);
 }

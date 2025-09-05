@@ -48,9 +48,11 @@ typedef struct s_sprites
 	void	*bg;
 	void	*p1;
 	void	*e1;
+	void	*e2;
 	void	*d1;
 	void	*c1;
 	void	*w1;
+	void	*g1;
 }				t_sprites;
 
 typedef struct s_data
@@ -98,6 +100,7 @@ void		free_sprites(t_data *data);
 //	----- Debug Tools -----
 
 void		print_map(char **map);
+void		print_movement_c(t_data *data);
 
 //	----- MLX Part -----
 
@@ -110,7 +113,7 @@ int			render(t_data *data);
 void		move(char *rotation, char **map, t_data *data);
 void		door_player(t_data *data, t_vector2 to_move);
 void		swap_player_space(t_data *data, t_vector2 to_move);
-void 		put_collectible(t_data *data, int x, int y);
+void		put_collectible(t_data *data, int x, int y);
 void		put_player(t_data *data, int x, int y);
 void		put_wall(t_data *data, int x, int y);
 void		put_enemy(t_data *data, int x, int y);

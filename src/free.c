@@ -14,6 +14,7 @@
 
 void	error_exit_validation(char **map, char **validation_map)
 {
+	ft_putstr_fd("Error!\n", 1);
 	if (map)
 		free_map(map);
 	if (validation_map)
@@ -32,7 +33,7 @@ void	free_game_data_exit(t_game_data *data)
 	exit (0);
 }
 
-void free_data_and_exit(t_data *data, int exitcode)
+void	free_data_and_exit(t_data *data, int exitcode)
 {
 	if (data->game_data)
 	{

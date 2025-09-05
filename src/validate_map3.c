@@ -16,7 +16,7 @@ static void	convert_extra_components_to_space(char **map)
 {
 	int	i;
 	int	k;
-	
+
 	i = 0;
 	while (map[i])
 	{
@@ -24,7 +24,7 @@ static void	convert_extra_components_to_space(char **map)
 		while (map[i][k])
 		{
 			if (map[i][k] == 'E' || map[i][k] == 'C' || map[i][k] == 'D')
-			map[i][k] = '0';
+				map[i][k] = '0';
 			k++;
 		}
 		i++;
@@ -56,7 +56,7 @@ int	check_if_map_surrounded_by_walls(char **map, t_vector2 map_size)
 	t_flood_fill_data	flood_data;
 	t_vector2			beginning;
 	t_vector2			size;
-	
+
 	beginning = find_component_location(map, 'P');
 	convert_extra_components_to_space(map);
 	size = (t_vector2){.x = map_size.x + 2, .y = map_size.y + 2};
@@ -70,7 +70,7 @@ int	check_if_map_surrounded_by_walls(char **map, t_vector2 map_size)
 		&& map[map_size.y + 1][map_size.x + 1] == '0')
 		ft_putendl_fd("Playground is surrounded by walls!", 1);
 	else
-		return (ft_putendl_fd("Invalid Map!", 1), 0);
+		return (ft_putendl_fd("Error!", 1), 0);
 	free_map(map);
 	return (1);
 }

@@ -12,6 +12,7 @@ SRCS = create_map.c \
 		mlx_setup.c \
 		render.c \
 		render2.c \
+		render3.c \
 		keybinds.c \
 		move.c \
 		move2.c

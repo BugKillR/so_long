@@ -1,21 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/05 04:07:45 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/09/05 04:07:46 by kkeskin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static void print_movement_c(t_data * data)
-{
-	data->movement_c++;
-	ft_putstr_fd("Movement Count: ", 1);
-	ft_putnbr_fd(data->movement_c, 1);
-	ft_putchar_fd('\n', 1);
-}
-
-static void move_up(char **map, t_data *data, int y, int x)
+static void	move_up(char **map, t_data *data, int y, int x)
 {
 	t_vector2	to_move;
 
 	to_move = (t_vector2){.x = data->p_v2.x, .y = data->p_v2.y - 1};
 	if (map[y - 1][x] == '1')
 		return ;
-    else if (map[y - 1][x] == 'E')
+	else if (map[y - 1][x] == 'E')
 		door_player(data, to_move);
 	else if (map[y - 1][x] == 'D')
 	{
@@ -33,14 +37,14 @@ static void move_up(char **map, t_data *data, int y, int x)
 	print_movement_c(data);
 }
 
-static void move_left(char **map, t_data *data, int y, int x)
+static void	move_left(char **map, t_data *data, int y, int x)
 {
 	t_vector2	to_move;
 
 	to_move = (t_vector2){.x = data->p_v2.x - 1, .y = data->p_v2.y};
 	if (map[y][x - 1] == '1')
 		return ;
-    else if (map[y][x - 1] == 'E')
+	else if (map[y][x - 1] == 'E')
 		door_player(data, to_move);
 	else if (map[y][x - 1] == 'D')
 	{
@@ -58,14 +62,14 @@ static void move_left(char **map, t_data *data, int y, int x)
 	print_movement_c(data);
 }
 
-static void move_down(char **map, t_data *data, int y, int x)
+static void	move_down(char **map, t_data *data, int y, int x)
 {
 	t_vector2	to_move;
 
 	to_move = (t_vector2){.x = data->p_v2.x, .y = data->p_v2.y + 1};
 	if (map[y + 1][x] == '1')
 		return ;
-    else if (map[y + 1][x] == 'E')
+	else if (map[y + 1][x] == 'E')
 		door_player(data, to_move);
 	else if (map[y + 1][x] == 'D')
 	{
@@ -83,14 +87,14 @@ static void move_down(char **map, t_data *data, int y, int x)
 	print_movement_c(data);
 }
 
-static void move_right(char **map, t_data *data, int y, int x)
+static void	move_right(char **map, t_data *data, int y, int x)
 {
 	t_vector2	to_move;
 
 	to_move = (t_vector2){.x = data->p_v2.x + 1, .y = data->p_v2.y};
 	if (map[to_move.y][to_move.x] == '1')
 		return ;
-    else if (map[to_move.y][to_move.x] == 'E')
+	else if (map[to_move.y][to_move.x] == 'E')
 		door_player(data, to_move);
 	else if (map[to_move.y][to_move.x] == 'D')
 	{

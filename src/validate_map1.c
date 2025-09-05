@@ -85,7 +85,8 @@ static char	**create_validation_map(char **map, t_vector2 map_size)
 	return (validation_map);
 }
 
-t_game_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name)
+t_game_data	*build_validation_map(char **map, t_vector2 map_size,
+	char *map_name)
 {
 	char		**validation_map;
 	char		**dup_val_map;
@@ -93,6 +94,7 @@ t_game_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name
 	t_game_data	*data;
 
 	validate_components(map, map_size);
+	check_borders(map, map_size);
 	validation_map = create_validation_map(map, map_size);
 	dup_val_map = duplicate_map(validation_map, map, map_size);
 	if (!check_if_map_surrounded_by_walls(dup_val_map, map_size))
@@ -100,10 +102,7 @@ t_game_data	*build_validation_map(char **map, t_vector2 map_size, char *map_name
 	dup_val_map = duplicate_map(validation_map, map, map_size);
 	collectibles = count_real_collectibles(dup_val_map, map_size, map_name);
 	if (collectibles <= 0)
-	{
-		ft_putstr_fd("There is no reachable collectible!\n", 1);
 		error_exit_validation(map, validation_map);
-	}
 	dup_val_map = duplicate_map(validation_map, map, map_size);
 	if (!check_if_player_can_reach_door(dup_val_map, map_size))
 		error_exit_validation(map, validation_map);

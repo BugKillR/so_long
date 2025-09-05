@@ -81,16 +81,27 @@ static int	count_k(char **map)
 int	count_real_collectibles(char **map, t_vector2 map_size, char *map_name)
 {
 	t_flood_fill_data	flood_data;
-	int					count;
+	int					count_reachable;
+	int					count_all;
+	int					y;
 
-	count = 0;
+	count_reachable = 0;
+	count_all = 0;
+	y = 0;
+	while (y < map_size.y)
+	{
+		count_all += ft_count_chr(map[y], 'C');
+		y++;
+	}
 	flood_data.curr = find_component_location(map, 'P');
 	flood_data.size = (t_vector2){map_size.x + 2, map_size.y + 2};
 	flood_data.ignored = 'P';
 	convert_extra_components_to_space_no_c(map);
 	ft_flood_fill(map, flood_data, '0', 'F');
 	convert_real_collectibles_to_k(map, map_size);
-	count = count_k(map);
+	count_reachable = count_k(map);
+	if (count_all != count_reachable)
+		count_reachable = 0;
 	free_map(map);
-	return (count);
+	return (count_reachable);
 }
